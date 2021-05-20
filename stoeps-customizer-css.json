@@ -1,0 +1,52 @@
+{
+    "name": "CSS Customizations",
+    "title": "Fixing tiny annoying things",
+    "description": "Adding some css to fix the most annoying things..",
+    "services": [
+        "Customizer"
+    ],
+    "extensions": [
+        {
+            "name": "Blogs",
+            "type": "com.ibm.customizer.ui",
+            "payload": {
+                "include-files": [
+                    "stoeps-customizer-css/blogs.css"
+                ],
+                "cache-headers": {
+                    "cache-control": "max-age=0"
+                }
+            },
+            "path": "blogs",
+            "state": "enabled"
+        },
+        {
+            "name": "Metrics",
+            "type": "com.ibm.customizer.ui",
+            "payload": {
+                "include-files": [
+                    "stoeps-customizer-css/metrics.css"
+                ],
+                "cache-headers": {
+                    "cache-control": "max-age=0"
+                }
+            },
+            "path": "metrics",
+            "state": "enabled"
+        },
+        {
+            "name": "OrientMe",
+            "type": "com.ibm.customizer.ui",
+            "payload": {
+                "include-files": [
+                    "stoeps-customizer-css/orientme.css"
+                ],
+                "cache-headers": {
+                    "cache-control": "max-age=0"
+                }
+            },
+            "path": "social",
+            "state": "enabled"
+        }
+    ]
+}
