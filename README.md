@@ -15,7 +15,7 @@ Increase the font-size and added a line after each post.
 
 Elasticsearch Metrics doesn't size the page on widescreen monitors. Fix the header menu and content position.
 
-> Don't forget that you have to route all apps through customizer, or add metrics to the apps which 
+> Don't forget that you have to route all apps through customizer, or add metrics to the apps which are routed through customizer.
 
 ## Orient Me
 
