@@ -1,0 +1,11 @@
+div.MuiFormGroup-root label.MuiFormControlLabel-root:nth-child(3) {
+    display:none; 
+}
+
+.MuiListItem-root.MuiListItem-gutters{
+	display:none;
+}
+
+/* .MuiTypography-root.MuiTypography-body1 {
+	display:none;
+} */

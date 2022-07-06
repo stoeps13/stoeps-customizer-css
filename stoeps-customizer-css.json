@@ -21,31 +21,17 @@
             "state": "enabled"
         },
         {
-            "name": "Metrics",
+            "name": "TE Wizard",
             "type": "com.ibm.customizer.ui",
             "payload": {
                 "include-files": [
-                    "stoeps-customizer-css/metrics.css"
+                    "stoeps-customizer-css/te-wizard.css"
                 ],
                 "cache-headers": {
                     "cache-control": "max-age=0"
                 }
             },
-            "path": "metrics",
-            "state": "enabled"
-        },
-        {
-            "name": "OrientMe",
-            "type": "com.ibm.customizer.ui",
-            "payload": {
-                "include-files": [
-                    "stoeps-customizer-css/orientme.css"
-                ],
-                "cache-headers": {
-                    "cache-control": "max-age=0"
-                }
-            },
-            "path": "social",
+            "path": "te-creation-wizard",
             "state": "enabled"
         }
     ]
