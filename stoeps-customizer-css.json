@@ -21,9 +21,35 @@
             "state": "enabled"
         },
         {
+            "name": "Boards Ads",
+            "type": "com.ibm.customizer.ui",
+            "payload": {
+                "match": {
+                    "user-email": [
+                        "jjones5@stoeps.home",
+                        "jjones6@stoeps.home"
+                    ]
+                },
+                "include-files": [
+                    "stoeps-customizer-css/boards.css"
+                ],
+                "cache-headers": {
+                    "cache-control": "max-age=0"
+                }
+            },
+            "path": "boards",
+            "state": "enabled"
+        },
+        {
             "name": "TE Wizard",
             "type": "com.ibm.customizer.ui",
             "payload": {
+                "exclude": {
+                    "user-email": [
+                        "jjones2@stoeps.home",
+                        "jjones1@stoeps.home"
+                    ]
+                },
                 "include-files": [
                     "stoeps-customizer-css/te-wizard.css"
                 ],
