@@ -1,11 +1,15 @@
+/* Remove option to create private communtiy */
 div.MuiFormGroup-root label.MuiFormControlLabel-root:nth-child(3) {
     display:none; 
 }
 
+/* Remove tag and web address from left column */
 .MuiListItem-root.MuiListItem-gutters{
 	display:none;
 }
 
-/* .MuiTypography-root.MuiTypography-body1 {
-	display:none;
-} */
+/* Set max-height for pop-up*/
+.MuiPaper-root.MuiDialog-paper.MuiDialog-paperScrollPaper.MuiDialog-paperWidthFalse {
+    max-height: 720px;
+}
+
