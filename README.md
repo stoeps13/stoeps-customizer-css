@@ -2,22 +2,22 @@
 
 ## Installation
 
-Clone this repository to the nfs share of customizer. For example `/pv-connections/customizer`, add the json file to `/appreg` and reload the page, that should be pretty much all.
+Clone this repository to the NFS share of customizer. For example
+`/pv-connections/customizations`, add the `stoeps-customizer-css.json` file to 
+`/appreg` and reload the page, that should be pretty much all.
 
 ## Blogs
 
 * Overview heading too small
-* articles not seperated
+* articles not separated
 
-Increase the font-size and added a line after each post.
+Increase the heading font-size and add a horizontal line after each post.
 
-## Metrics
+## Tailored Experience Wizard
 
-Elasticsearch Metrics doesn't size the page on widescreen monitors. Fix the header menu and content position.
+* Hide private Community option
+* Remove 'Tagging' and 'Web address' from left menu
 
-> Don't forget that you have to route all apps through customizer, or add metrics to the apps which are routed through customizer.
+## Boards
 
-## Orient Me
-
-Loads fonts from unpkg.com, so copied the part from original css and replaced with the local url (no need to download the fonts, they are already there).
-
+* Hide menus to purchase update
