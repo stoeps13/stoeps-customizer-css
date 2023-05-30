@@ -1,4 +1,4 @@
-# Connections 7 tiny adjustments
+# Connections 8 tiny adjustments
 
 ## Installation
 
@@ -21,3 +21,8 @@ Increase the heading font-size and add a horizontal line after each post.
 ## Boards
 
 * Hide menus to purchase update
+
+## Top navigation / Logo
+
+* Add custom logo (loaded from customizer URL)
+* Change colors of navigation to a kind of green (to test options), not complete atm
