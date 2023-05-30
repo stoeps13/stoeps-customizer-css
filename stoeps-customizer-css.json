@@ -3,6 +3,7 @@
     "title": "Fixing tiny annoying things",
     "description": "Adding some css to fix the most annoying things..",
     "services": [
+        "Connections",
         "Customizer"
     ],
     "extensions": [
@@ -38,7 +39,7 @@
                 }
             },
             "path": "boards",
-            "state": "enabled"
+            "state": "disabled"
         },
         {
             "name": "TE Wizard",
@@ -58,7 +59,39 @@
                 }
             },
             "path": "te-creation-wizard",
-            "state": "enabled"
+            "state": "disabled"
+        },
+        {
+            "name": "Top Navigation Logo",
+            "type": "com.hcl.connections.custom.style",
+            "payload": {
+                "style-customization": {
+                    "generic": {
+                        "--color-header": "#3A5412",
+                        "--color-navigation": "#3A5412",
+                        "--color-navigation-selected": "#1D2A09",
+                        "--color-tertiary-navigation": "#3A5412",
+                        "--color-tertiary-navigation-selected": "#1D2A09",
+                        "--color-footer": "#3A5412",
+                        "--color-button": "#3A5412",
+                        "--color-button-hover": "#1D2A09",
+                        "--color-link": "#3A5412",
+                        "--color-link-hover": "#1D2A09",
+                        "--color-third-navigation-text": "#3A5412",
+                        "--color-third-navigation-selected": "#1D2A09"
+                    },
+                    "top-navigation": {
+                        "logo": {
+                            "order": "1",
+                            "src": "/files/customizer/stoeps-customizer-css/logo-white.png"
+                        }
+                    }
+                },
+                "cache-headers": {
+                    "cache-control": "max-age=0"
+                }
+            },
+            "path": "global"
         }
     ]
 }
