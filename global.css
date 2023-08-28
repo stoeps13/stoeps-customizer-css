@@ -1,0 +1,6 @@
+.lotusui30 a, .lotusui30 a:visited {
+  color: var(--color-tab-text-selected) !important;
+}
+.lotusui30 .lotusBtn {
+  color: var(--color-tab-text-selected) !important;
+}
