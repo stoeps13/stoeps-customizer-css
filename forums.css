@@ -1,0 +1,6 @@
+a.lotusBold {
+  color: var(--color-tab-text-selected) !important;
+}
+.app-forums.cnx8-ui #lconnTagWidget .lotusActions li a:not(.lotusPersonInactive) {
+  color: var(--color-tab-text-selected) !important;
+}
