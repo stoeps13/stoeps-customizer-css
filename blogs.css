@@ -2,6 +2,12 @@
 	font-size: 1.4em;
 }
 
+/*
 .lotusui30 .lotusTable tr {
 	border-bottom: 2px solid darkgrey;
+}
+*/
+/* Fix for CNX 8.0CR3 - showing horizontal lines for tables with border=0 */
+.blogsFixedTable tr {
+  border-top: unset !important;
 }
