@@ -8,6 +8,28 @@
     ],
     "extensions": [
         {
+            "name": "Connections Tours Config",
+            "title": "Connections Tours Config",
+            "description": "Connections Tours Config - Description",
+            "services": [
+                "Connections"
+            ],
+            "state": "enabled",
+            "extensions": [
+                {
+                    "name": "connections-tours-config",
+                    "type": "com.hcl.connections.tours",
+                    "payload": {
+                        "disabled": true,
+                        "cacheExpiration": 86400000,
+                        "skipCacheExpiration": 86400000
+                    },
+                    "path": "global",
+                    "state": "enabled"
+                }
+            ]
+        },
+        {
             "name": "Blogs",
             "type": "com.ibm.customizer.ui",
             "payload": {
@@ -42,6 +64,62 @@
             "state": "disabled"
         },
         {
+            "name": "Communities",
+            "type": "com.ibm.customizer.ui",
+            "payload": {
+                "include-files": [
+                    "stoeps-customizer-css/communities.css"
+                ],
+                "cache-headers": {
+                    "cache-control": "max-age=0"
+                }
+            },
+            "path": "communities",
+            "state": "enabled"
+        },
+        {
+            "name": "Files",
+            "type": "com.ibm.customizer.ui",
+            "payload": {
+                "include-files": [
+                    "stoeps-customizer-css/files.css"
+                ],
+                "cache-headers": {
+                    "cache-control": "max-age=0"
+                }
+            },
+            "path": "files",
+            "state": "enabled"
+        },
+        {
+            "name": "Forums",
+            "type": "com.ibm.customizer.ui",
+            "payload": {
+                "include-files": [
+                    "stoeps-customizer-css/forums.css"
+                ],
+                "cache-headers": {
+                    "cache-control": "max-age=0"
+                }
+            },
+            "path": "forums",
+            "state": "enabled"
+        },
+        {
+            "name": "Global CSS",
+            "type": "com.ibm.customizer.ui",
+            "payload": {
+                "include-files": [
+                    "stoeps-customizer-css/global.css"
+                ],
+                "cache-headers": {
+                    "cache-control": "max-age=0"
+                }
+            },
+            "path": "global",
+            "state": "enabled"
+        },
+        {
             "name": "TE Wizard",
             "type": "com.ibm.customizer.ui",
             "payload": {
@@ -74,6 +152,8 @@
                         "--color-tertiary-navigation-selected": "#1D2A09",
                         "--color-footer": "#3A5412",
                         "--color-button": "#3A5412",
+                        "--color-tab-text-selected": "#3A5412",
+                        "--hintergrund": "#3A5412",
                         "--color-button-hover": "#1D2A09",
                         "--color-link": "#3A5412",
                         "--color-link-hover": "#1D2A09",
@@ -87,11 +167,23 @@
                         }
                     }
                 },
+                "cacheExpiration": 360000
+            },
+            "path": "global"
+        },
+        {
+            "name": "Wikis",
+            "type": "com.ibm.customizer.ui",
+            "payload": {
+                "include-files": [
+                    "stoeps-customizer-css/wikis.css"
+                ],
                 "cache-headers": {
                     "cache-control": "max-age=0"
                 }
             },
-            "path": "global"
+            "path": "wikis",
+            "state": "enabled"
         }
     ]
 }
