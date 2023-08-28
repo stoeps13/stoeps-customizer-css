@@ -4,3 +4,9 @@
 .lotusui30 .lotusBtn {
   color: var(--color-tab-text-selected) !important;
 }
+
+/* Teams share right top */
+[dir="ltr"] .extension-menu-item-img {
+  width: unset !important;
+  height: 28px !important;
+}
