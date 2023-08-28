@@ -1,0 +1,6 @@
+a.lotusBold {
+  color: var(--color-tab-text-selected) !important;
+}
+.app-wikis #lconnTagCloudFilter .lotusActions li span, .app-wikis #lconnTagCloudFilter .lotusActions li a {
+  color: var(--color-tab-text-selected) !important;
+}
