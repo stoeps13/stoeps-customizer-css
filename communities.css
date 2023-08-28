@@ -1,5 +1,17 @@
-.ic-view-select .bx--list-box__label {
-  color: unset !important;
+/* Community catalog */
+/* Recently visited is hard coded in /opt/IBM/WebSphere/AppServer/profiles/AppSrv01/installedApps/ConnectionsCell/Common.ear/connections.info.war/ui/dist/js/chunk__web-catalog-components__catalog-app__react.b19aa7bfb259f201a2b9.chunk.css
+   To customize the color, you have to remove the !important from .ic-view-select .bx--list-box__label definition, or the complete color set
+ */
+.bx--list-box__menu-icon > svg {
+  fill: var(--color-button) !important;
+}
+
+.ic-view-select .bx--list-box__label, .ic-view-select .bx--list-box__field {
+  color: var(--color-button) !important;
+}
+
+.bx--cardv2.community-card .shared-icon svg {
+  fill: var(--color-button) !important;
 }
 
 .customizebuttonCNX8 {
@@ -22,4 +34,13 @@
   color: var(--color-button-text) !important;
   background-color: var(--color-button) !important;
   border-color: var(--color-button) !important;
+}
+
+/* Tag filter search box community catalg */
+.tag-finder .searchIcon {
+  background-color: var(--color-button) !important;
+}
+
+.tag-finder .tagBox {
+  border: 2px solid var(--color-button) !important;
 }
