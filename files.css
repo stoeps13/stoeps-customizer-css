@@ -1,0 +1,3 @@
+#tertiary_level_nav a:hover span {
+  color: var(--color-tab-text-selected) !important;
+}
