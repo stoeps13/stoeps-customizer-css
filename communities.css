@@ -2,6 +2,11 @@
   color: unset !important;
 }
 
+.customizebuttonCNX8 {
+  color: var(--color-button-text) !important;
+  background-color: var(--color-button) !important;
+}
+
 .catalog .bx--tabs__nav-item a:hover,
 .catalog .bx--tabs__nav-item--selected a,
 .catalog .bx--tabs__nav-item--selected bx--tabs__nav-item a.bx--tabs__nav-link {
@@ -10,4 +15,11 @@
 
 .ic-view-select .bx--list-box__label {
   color: var(--color-tab-text-selected) !important;
+}
+
+/* Highlights AS widget buttons */
+.btn-primary {
+  color: var(--color-button-text) !important;
+  background-color: var(--color-button) !important;
+  border-color: var(--color-button) !important;
 }
