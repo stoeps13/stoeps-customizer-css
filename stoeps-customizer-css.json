@@ -8,26 +8,15 @@
     ],
     "extensions": [
         {
-            "name": "Connections Tours Config",
-            "title": "Connections Tours Config",
-            "description": "Connections Tours Config - Description",
-            "services": [
-                "Connections"
-            ],
-            "state": "enabled",
-            "extensions": [
-                {
-                    "name": "connections-tours-config",
-                    "type": "com.hcl.connections.tours",
-                    "payload": {
-                        "disabled": true,
-                        "cacheExpiration": 86400000,
-                        "skipCacheExpiration": 86400000
-                    },
-                    "path": "global",
-                    "state": "enabled"
-                }
-            ]
+            "name": "connections-tours-config",
+            "type": "com.hcl.connections.tours",
+            "payload": {
+                "disabled": true,
+                "cacheExpiration": 86400000,
+                "skipCacheExpiration": 86400000
+            },
+            "path": "global",
+            "state": "enabled"
         },
         {
             "name": "Blogs",
