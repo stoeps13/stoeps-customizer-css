@@ -26,3 +26,14 @@ Increase the heading font-size and add a horizontal line after each post.
 
 * Add custom logo (loaded from customizer URL)
 * Change colors of navigation to a kind of green (to test options), not complete atm
+
+# Custom Menu entries
+
+* Add links for /cnxadmin/, Customizer, Highwayservice and Search Server status
+* Rename Home
+* Remove Metrics link
+* The used icons are just examples and are downloaded from [Web Fonts](http://www.onlinewebfonts.com), replace them before you use the icons!
+
+This is the sidemenu with all customizing from this repo:
+
+![image](https://github.com/stoeps13/stoeps-customizer-css/assets/1975258/43810a3c-1d16-4829-983e-b0545af0de3d)
