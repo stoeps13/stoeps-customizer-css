@@ -22,6 +22,10 @@ Increase the heading font-size and add a horizontal line after each post.
 
 * Hide menus to purchase update
 
+## Tiny Editors
+
+* When you use Connections 7 with Harbor containers and Tiny editors, then the toolbar is visible in the HTML Source view. In Connections 8 and with the default Component Pack 7.0.0.2 the toolbar is hidden
+
 ## Top navigation / Logo
 
 * Add custom logo (loaded from customizer URL)
