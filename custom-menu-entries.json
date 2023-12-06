@@ -86,6 +86,28 @@
                         "id": "homepage",
                         "name": "My Home",
                         "action": "update"
+                    },
+                    {
+                        "id": "customizer",
+                        "name": "Customizer",
+                        "action": "add",
+                        "link": "/appreg/",
+                        "icon": "data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4NCjwhLS0gU3ZnIFZlY3RvciBJY29ucyA6IGh0dHA6Ly93d3cub25saW5ld2ViZm9udHMuY29tL2ljb24gLS0+DQo8IURPQ1RZUEUgc3ZnIFBVQkxJQyAiLS8vVzNDLy9EVEQgU1ZHIDEuMS8vRU4iICJodHRwOi8vd3d3LnczLm9yZy9HcmFwaGljcy9TVkcvMS4xL0RURC9zdmcxMS5kdGQiPg0KPHN2ZyB2ZXJzaW9uPSIxLjEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHg9IjBweCIgeT0iMHB4IiB2aWV3Qm94PSIwIDAgMjU2IDI1NiIgZW5hYmxlLWJhY2tncm91bmQ9Im5ldyAwIDAgMjU2IDI1NiIgeG1sOnNwYWNlPSJwcmVzZXJ2ZSI+DQo8bWV0YWRhdGE+IFN2ZyBWZWN0b3IgSWNvbnMgOiBodHRwOi8vd3d3Lm9ubGluZXdlYmZvbnRzLmNvbS9pY29uIDwvbWV0YWRhdGE+DQo8Zz48Zz48Zz48cGF0aCBmaWxsPSIjRkZGRkZGIiBkPSJNMTAsMTI4djEyMi44aDExOGgxMThWMTI4VjUuMkgxMjhIMTBWMTI4eiBNMjI2LjgsMTI4djEwMi4ySDEyOEgyOS4yVjEyOFYyNS44SDEyOGg5OC44VjEyOHoiLz48cGF0aCBmaWxsPSIjRkZGRkZGIiBkPSJNODguMyw2OC4xYy0yLjgsMC41LTcsMi41LTkuMyw0LjNjLTIuMywxLjktNC42LDYuNC01LjIsMTAuNmMtMC4zLDEuNy0wLjYsOC0wLjgsMTMuOWMtMC4zLDEyLjEtMSwxNi42LTMsMTkuNmMtMi4yLDMuMy0zLjUsNC05LjMsNS4xbC0xLjMsMC4ydjcuN3Y3LjdoMS4xYzIuNSwwLDYuMywxLjYsOC4xLDMuM2MzLjMsMy4zLDMuOCw1LjgsNC4zLDIwLjFjMC40LDEzLjQsMC45LDE3LjQsMi40LDIwLjVjMy41LDcuMSw4LjcsOS43LDIwLDEwLjJsNi4zLDAuM3YtNy43di03LjdsLTMuNy0wLjNjLTIuMS0wLjItNC40LTAuNy01LjMtMS4xYy0zLTEuNC0zLjEtMi4xLTMuOC0xNS41Yy0wLjYtMTIuOS0xLjItMTctMy4zLTIxLjNjLTEuMi0yLjYtMy42LTUuNS02LjMtNy41bC0xLjYtMS4ybDIuNy0yLjFjMy4xLTIuNCw1LTUuMyw2LjQtOS40YzEuMy00LDEuOC04LjMsMi4yLTE5LjdjMC4yLTUuMywwLjUtMTAuMywwLjgtMTEuMWMwLjgtMi42LDIuOS0zLjYsNy43LTMuOWw0LjItMC4ydi03LjZ2LTcuNmwtNS42LDBDOTIuOSw2Ny43LDg5LjQsNjcuOCw4OC4zLDY4LjF6Ii8+PHBhdGggZmlsbD0iI0ZGRkZGRiIgZD0iTTE0OS43LDc1LjFsMC4xLDcuNkwxNTQsODNjNC42LDAuMyw2LjMsMS4xLDcuNCwzLjRjMC4zLDAuNywwLjgsNS45LDEuMSwxMy4xYzAuNywxNy4yLDIsMjEuNSw3LjksMjYuOWwzLjEsMi44bC0zLjEsMi44Yy0zLjUsMy4yLTUuNiw3LjEtNi43LDEyLjNjLTAuNCwxLjgtMC45LDguNS0xLjIsMTQuOGMtMC4zLDgtMC42LDExLjktMS4xLDEyLjljLTEuMiwyLjQtMi45LDMuMi03LjYsMy43bC00LjQsMC41djcuNnY3LjdsNi40LTAuM2MxMS40LTAuNSwxNy43LTMuOCwyMC40LTEwLjZjMS4yLTMuMywxLjYtNi45LDItMTguOWMwLjQtMTMuOCwwLjgtMTUuNywzLjMtMTkuOGMxLjctMi42LDQtNCw3LjctNC41bDIuNC0wLjNsLTAuMS03LjdsLTAuMS03LjdsLTIuMi0wLjNjLTUuNS0wLjgtOC4zLTMuNS0xMC4xLTkuM2MtMC4zLTEuMS0wLjctNy42LTEtMTQuNmMtMC40LTEzLjktMC44LTE2LjYtMy0yMC44Yy0zLjMtNi4zLTkuMy04LjktMjAuNC05aC01LjRMMTQ5LjcsNzUuMXoiLz48cGF0aCBmaWxsPSIjRkZGRkZGIiBkPSJNMTE3LDEwNHY5LjFoOC42aDguNlYxMDR2LTkuMWgtOC42SDExN1YxMDR6Ii8+PHBhdGggZmlsbD0iI0ZGRkZGRiIgZD0iTTExNywxNTQuNHY5LjFoNC4xaDQuMXYxLjNjMCw0LjUtMyw5LjMtNy4xLDExLjJjLTEuMiwwLjYtMi4zLDEuMS0yLjQsMS4yYzAsMCwwLjYsMS44LDEuNSwzLjhsMS43LDMuN2wxLjYtMC43YzQuMi0xLjgsOC40LTUuNCwxMC42LTljMi4zLTMuOSwyLjgtNywzLjEtMTguOGwwLjMtMTAuOWgtOC43SDExN1YxNTQuNEwxMTcsMTU0LjR6Ii8+PC9nPjwvZz48L2c+DQo8L3N2Zz4NCg==",
+                        "order": 30,
+                        "requiredRoles": [
+                            "admin"
+                        ],
+                        "new_window": true,
+                        "location": "bottom"
+                    },
+                    {
+                        "id": "boards-tasks-nav",
+                        "name": "Tasks",
+                        "action": "add",
+                        "icon": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' xml:space='preserve'%3E%3Cpath d='M4.5 3h7.3v4.6H4.5zm7.9 0h7.3v4.6h-7.3zm-.6 11.4H4.4V8.9h7.4v5.5zM4.9 14h6.5V9.3H4.9V14zm14.8.4h-7.2V8.9h7.2v5.5zm-6.8-.4h6.3V9.3h-6.3V14zm6.8 7.1h-7.2v-5.5h7.2v5.5zm-6.8-.4h6.3v-4.6h-6.3v4.6z' style='fill:%23ffffff'/%3E%3C/svg%3E",
+                        "order": 500,
+                        "submenu": [],
+                        "location": "bottom"
                     }
                 ]
             },
