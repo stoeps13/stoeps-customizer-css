@@ -109,6 +109,20 @@
             "state": "enabled"
         },
         {
+            "name": "Tiny",
+            "type": "com.ibm.customizer.ui",
+            "payload": {
+                "include-files": [
+                    "stoeps-customizer-css/tiny.css"
+                ],
+                "cache-headers": {
+                    "cache-control": "max-age=0"
+                }
+            },
+            "path": "global",
+            "state": "enabled"
+        },
+        {
             "name": "TE Wizard",
             "type": "com.ibm.customizer.ui",
             "payload": {
