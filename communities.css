@@ -44,3 +44,8 @@
 .tag-finder .tagBox {
   border: 2px solid var(--color-button) !important;
 }
+
+/* Hover fix for Community create button */
+body .icCatalogCommunityCreate.bx--dropdown:hover {
+    background-color: var(--color-button-hover) !important;
+}
