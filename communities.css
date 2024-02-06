@@ -49,3 +49,12 @@
 body .icCatalogCommunityCreate.bx--dropdown:hover {
     background-color: var(--color-button-hover) !important;
 }
+
+/* External shared string in CR5 */
+.lotusui30 .lotusMeta {
+    margin: 12px !important;
+}
+
+.lotusui30 .lconnIconListSharedExternal {
+    margin: 12px 0 0 !important;
+}
