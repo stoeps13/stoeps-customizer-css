@@ -10,3 +10,12 @@
   width: unset !important;
   height: 28px !important;
 }
+
+/* set button color in video controls */
+.vjs-default-skin .vjs-control {
+  color: var(--color-button) !important;
+}
+
+.vjs-default-skin:hover .vjs-control:hover {
+  color: var(--color-button-hover) !important;
+}
