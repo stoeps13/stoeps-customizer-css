@@ -58,3 +58,7 @@ body .icCatalogCommunityCreate.bx--dropdown:hover {
 .lotusui30 .lconnIconListSharedExternal {
     margin: 12px 0 0 !important;
 }
+
+.ic-view-select .bx--list-box__label, .ic-view-select .bx--list-box__field {
+    color: var(--color-link) !important;
+}
