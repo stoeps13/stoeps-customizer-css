@@ -62,3 +62,6 @@ body .icCatalogCommunityCreate.bx--dropdown:hover {
 .ic-view-select .bx--list-box__label, .ic-view-select .bx--list-box__field {
     color: var(--color-link) !important;
 }
+
+/* Fix 3 columns with top menu layout (right colum on bottom of the page) */
+.lotusWidget_3columnsTopMenuLayout #lotusContent {padding-right: 0px;}
