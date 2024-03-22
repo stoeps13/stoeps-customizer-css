@@ -65,3 +65,13 @@ body .icCatalogCommunityCreate.bx--dropdown:hover {
 
 /* Fix 3 columns with top menu layout (right colum on bottom of the page) */
 .lotusWidget_3columnsTopMenuLayout #lotusContent {padding-right: 0px;}
+
+/* Hide old Community layout from selector */
+.lotusLargeWidgets div div#lconn_core_palette_ChangeLayoutButton_0.lotusPaletteWidget,
+.lotusLargeWidgets div div#lconn_core_palette_ChangeLayoutButton_1.lotusPaletteWidget,
+.lotusLargeWidgets div div#lconn_core_palette_ChangeLayoutButton_2.lotusPaletteWidget,
+.lotusLargeWidgets div div#lconn_core_palette_ChangeLayoutButton_5.lotusPaletteWidget,
+.lotusLargeWidgets div div#lconn_core_palette_ChangeLayoutButton_6.lotusPaletteWidget,
+.lotusLargeWidgets div div#lconn_core_palette_ChangeLayoutButton_7.lotusPaletteWidget {
+        display: none;
+}
