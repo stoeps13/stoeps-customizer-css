@@ -32,3 +32,8 @@
 .cnx8-ui.app-blogs.cl-3columnsTopMenuLayout #lotusMain[role=tabpanel] #lotusColLeft, .cnx8-ui.app-blogs.cl-3columnsWithBannerTopMenuLayout #lotusMain[role=tabpanel] #lotusColLeft {
   display: block !important;
 }
+
+/* Remove max-width on image width */
+.lotusui30 img {
+    max-width: 100%;
+}
