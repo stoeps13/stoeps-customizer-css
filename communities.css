@@ -75,3 +75,5 @@ body .icCatalogCommunityCreate.bx--dropdown:hover {
 .lotusLargeWidgets div div#lconn_core_palette_ChangeLayoutButton_7.lotusPaletteWidget {
         display: none;
 }
+
+/* Hide template section in highlights page settings */ .clearfix.page-template { display: none; }
