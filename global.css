@@ -19,3 +19,20 @@
 .vjs-default-skin:hover .vjs-control:hover {
   color: var(--color-button-hover) !important;
 }
+
+/* Change background for warning banner */
+div#top-navigation-banner div#cnx-admin-banner-wrapper div.adminBanner.adminBannerwarning div {
+  background-color: #3BCC36 !important;
+}
+/* Change font color for warning banner */
+div#top-navigation-banner div#cnx-admin-banner-wrapper div.adminBanner.adminBannerwarning div div p {
+  color: orange !important;
+}
+/* Change background for info banner */
+div#top-navigation-banner div#cnx-admin-banner-wrapper div.adminBanner.adminBannerinfo div {
+  background-color: blue !important;
+}
+/* Change font color for info banner */
+div#top-navigation-banner div#cnx-admin-banner-wrapper div.adminBanner.adminBannerinfo div div p {
+  color: white !important;
+}
