@@ -39,3 +39,13 @@ div#top-navigation-banner div#cnx-admin-banner-wrapper div.adminBanner.adminBann
 .xccstyle .xccWidget .wbody #showRichContent a {
   unset !important;
 }
+
+/* Fix rte widget vs app padding */
+.xccRte {
+  padding: 1.5rem;
+}
+
+.qkrWikiPreview.bidiAware {
+  padding: 0 !important;
+}
+
