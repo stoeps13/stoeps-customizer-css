@@ -36,3 +36,6 @@ div#top-navigation-banner div#cnx-admin-banner-wrapper div.adminBanner.adminBann
 div#top-navigation-banner div#cnx-admin-banner-wrapper div.adminBanner.adminBannerinfo div div p {
   color: white !important;
 }
+.xccstyle .xccWidget .wbody #showRichContent a {
+  unset !important;
+}
