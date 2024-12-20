@@ -57,6 +57,41 @@
             "state": "enabled"
         },
         {
+            "name": "Custom side menu",
+            "type": "com.hcl.connections.nav",
+            "payload": {
+                "customEntries": [
+                    {
+                        "id": "boards-nav-entry",
+                        "name": "Boards",
+                        "action": "add",
+                        "link": "/boards/",
+                        "alternate_links": [
+                            "/boards/my",
+                            "/boards/board"
+                        ],
+                        "icon": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' xml:space='preserve'%3E%3Cpath d='M4.5 3h7.3v4.6H4.5zm7.9 0h7.3v4.6h-7.3zm-.6 11.4H4.4V8.9h7.4v5.5zM4.9 14h6.5V9.3H4.9V14zm14.8.4h-7.2V8.9h7.2v5.5zm-6.8-.4h6.3V9.3h-6.3V14zm6.8 7.1h-7.2v-5.5h7.2v5.5zm-6.8-.4h6.3v-4.6h-6.3v4.6z' style='fill:%23ffffff'/%3E%3C/svg%3E",
+                        "order": 4500,
+                        "submenu": [],
+                        "location": "main"
+                    },
+                    {
+                        "id": "activities",
+                        "action": "remove"
+                    },
+                    {
+                        "id": "blogs",
+                        "action": "update",
+                        "location": "main",
+                        "order": 4570
+                    }
+                ],
+                "cacheExpiration": 20000
+            },
+            "path": "global",
+            "state": "enabled"
+        },
+        {
             "name": "Files",
             "type": "com.ibm.customizer.ui",
             "payload": {
@@ -116,31 +151,6 @@
                 }
             },
             "path": "te-creation-wizard",
-            "state": "enabled"
-        },
-        {
-            "name": "Tasks Nav Button",
-            "type": "com.hcl.connections.nav",
-            "payload": {
-                "customEntries": [
-                    {
-                        "id": "boards-nav-entry",
-                        "name": "Boards",
-                        "action": "add",
-                        "link": "/boards/",
-                        "alternate_links": [
-                            "/boards/my",
-                            "/boards/board"
-                        ],
-                        "icon": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' xml:space='preserve'%3E%3Cpath d='M4.5 3h7.3v4.6H4.5zm7.9 0h7.3v4.6h-7.3zm-.6 11.4H4.4V8.9h7.4v5.5zM4.9 14h6.5V9.3H4.9V14zm14.8.4h-7.2V8.9h7.2v5.5zm-6.8-.4h6.3V9.3h-6.3V14zm6.8 7.1h-7.2v-5.5h7.2v5.5zm-6.8-.4h6.3v-4.6h-6.3v4.6z' style='fill:%23ffffff'/%3E%3C/svg%3E",
-                        "order": 4500,
-                        "submenu": [],
-                        "location": "main"
-                    }
-                ],
-                "cacheExpiration": 20000
-            },
-            "path": "global",
             "state": "enabled"
         },
         {
