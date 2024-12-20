@@ -6,18 +6,8 @@
         "Connections",
         "Customizer"
     ],
+    "state": "enabled",
     "extensions": [
-        {
-            "name": "connections-tours-config",
-            "type": "com.hcl.connections.tours",
-            "payload": {
-                "disabled": true,
-                "cacheExpiration": 86400000,
-                "skipCacheExpiration": 86400000
-            },
-            "path": "global",
-            "state": "enabled"
-        },
         {
             "name": "Blogs",
             "type": "com.ibm.customizer.ui",
@@ -50,7 +40,7 @@
                 }
             },
             "path": "boards",
-            "state": "disabled"
+            "state": "enabled"
         },
         {
             "name": "Communities",
@@ -109,20 +99,6 @@
             "state": "enabled"
         },
         {
-            "name": "Tiny",
-            "type": "com.ibm.customizer.ui",
-            "payload": {
-                "include-files": [
-                    "stoeps-customizer-css/tiny.css"
-                ],
-                "cache-headers": {
-                    "cache-control": "max-age=0"
-                }
-            },
-            "path": "global",
-            "state": "enabled"
-        },
-        {
             "name": "TE Wizard",
             "type": "com.ibm.customizer.ui",
             "payload": {
@@ -140,29 +116,52 @@
                 }
             },
             "path": "te-creation-wizard",
-            "state": "disabled"
+            "state": "enabled"
+        },
+        {
+            "name": "Tasks Nav Button",
+            "type": "com.hcl.connections.nav",
+            "payload": {
+                "customEntries": [
+                    {
+                        "id": "boards-nav-entry",
+                        "name": "Boards",
+                        "action": "add",
+                        "link": "/boards/",
+                        "alternate_links": [
+                            "/boards/my",
+                            "/boards/board"
+                        ],
+                        "icon": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' xml:space='preserve'%3E%3Cpath d='M4.5 3h7.3v4.6H4.5zm7.9 0h7.3v4.6h-7.3zm-.6 11.4H4.4V8.9h7.4v5.5zM4.9 14h6.5V9.3H4.9V14zm14.8.4h-7.2V8.9h7.2v5.5zm-6.8-.4h6.3V9.3h-6.3V14zm6.8 7.1h-7.2v-5.5h7.2v5.5zm-6.8-.4h6.3v-4.6h-6.3v4.6z' style='fill:%23ffffff'/%3E%3C/svg%3E",
+                        "order": 4500,
+                        "submenu": [],
+                        "location": "main"
+                    }
+                ],
+                "cacheExpiration": 20000
+            },
+            "path": "global",
+            "state": "enabled"
+        },
+        {
+            "name": "Tiny",
+            "type": "com.ibm.customizer.ui",
+            "payload": {
+                "include-files": [
+                    "stoeps-customizer-css/tiny.css"
+                ],
+                "cache-headers": {
+                    "cache-control": "max-age=0"
+                }
+            },
+            "path": "global",
+            "state": "enabled"
         },
         {
             "name": "Top Navigation Logo",
             "type": "com.hcl.connections.custom.style",
             "payload": {
                 "style-customization": {
-                    "generic": {
-                        "--color-header": "#3A5412",
-                        "--color-navigation": "#3A5412",
-                        "--color-navigation-selected": "#1D2A09",
-                        "--color-tertiary-navigation": "#3A5412",
-                        "--color-tertiary-navigation-selected": "#1D2A09",
-                        "--color-footer": "#3A5412",
-                        "--color-button": "#3A5412",
-                        "--color-tab-text-selected": "#3A5412",
-                        "--hintergrund": "#3A5412",
-                        "--color-button-hover": "#1D2A09",
-                        "--color-link": "#3A5412",
-                        "--color-link-hover": "#1D2A09",
-                        "--color-third-navigation-text": "#3A5412",
-                        "--color-third-navigation-selected": "#1D2A09"
-                    },
                     "top-navigation": {
                         "logo": {
                             "order": "1",
@@ -172,7 +171,8 @@
                 },
                 "cacheExpiration": 360000
             },
-            "path": "global"
+            "path": "global",
+            "state": "enabled"
         },
         {
             "name": "Wikis",
@@ -186,6 +186,17 @@
                 }
             },
             "path": "wikis",
+            "state": "enabled"
+        },
+        {
+            "name": "connections-tours-config",
+            "type": "com.hcl.connections.tours",
+            "payload": {
+                "disabled": true,
+                "cacheExpiration": 86400000,
+                "skipCacheExpiration": 86400000
+            },
+            "path": "global",
             "state": "enabled"
         }
     ]
