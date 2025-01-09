@@ -4,6 +4,10 @@
 .lotusui30 .lotusBtn {
   color: var(--color-tab-text-selected) !important;
 }
+/* fix create community links */
+li.bx--dropdown-item a.bx--dropdown-link {
+  color: var(--color-button-text) !important;
+}
 
 /* Teams share right top */
 [dir="ltr"] .extension-menu-item-img {
