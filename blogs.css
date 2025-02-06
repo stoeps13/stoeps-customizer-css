@@ -37,8 +37,25 @@
   display: block !important;
 }
 
-
 /* Remove max-width on image width */
 .lotusui30 img {
     max-width: 100%;
+}
+
+/* Manage your blog */
+.app-blogs.cnx8-ui #websiteForm input[type="checkbox"], .app-blogs.cnx8-ui .formtableNoDesc input[type="checkbox"], .app-blogs.cnx8-ui #entryform input[type="checkbox"] {
+  border: 1px solid var(--color-navigation) !important;
+  background-color: var(--color-navigation) !important;
+  background: var(--color-navigation) !important;
+}
+.app-blogs.cnx8-ui .rating.lotusRating div.lotusLike .lotusLikeCount.lotusDisabled img.lotusIconLike, .app-blogs.cnx8-ui .rating.lotusRating div.lotusLike .lotusLikeCount img.lotusIconLike {
+    background-position: -1395px -10px !important;
+}
+.app-blogs.cnx8-ui .rating.lotusRating div.lotusLike .lotusLikeCount {
+    background-position: unset;
+}
+
+/* Display My Likes / Votes in Blogs > Public Blogs */
+.cnx8-ui.app-blogs #recentEntries table tr td:nth-child(1) {
+  display: unset !important;
 }
