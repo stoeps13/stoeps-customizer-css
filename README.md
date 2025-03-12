@@ -3,7 +3,7 @@
 ## Installation
 
 Clone this repository to the NFS share of customizer. For example
-`/pv-connections/customizations`, add the `stoeps-customizer-css.json` file to 
+`/pv-connections/customizations`, add the `stoeps-customizer-css.json` file to
 `/appreg` and reload the page, that should be pretty much all.
 
 ## Blogs
@@ -12,6 +12,10 @@ Clone this repository to the NFS share of customizer. For example
 * articles not separated
 
 Increase the heading font-size and add a horizontal line after each post.
+
+### Blog uploads preview images
+
+* see https://stoeps.de/posts/2025/add_preview_to_blogs_uploads/
 
 ## Tailored Experience Wizard
 
