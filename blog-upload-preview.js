@@ -3,8 +3,8 @@
  * Mail: christoph.stoettner@stoeps.de
  * Date: 2025-03-12
  * Modified: 2025-04-22 - Added support for pagination
- * Copyright:
- * License:
+ * Copyright: Christoph Stoettner
+ * License: Apache 2.0
  */
 // Function to add a single preview toggle button and prepare images for preview
 function addImagePreviewToggle() {
@@ -31,7 +31,7 @@ function addImagePreviewToggle() {
   loadingIndicator.textContent = ' Loading...';
   loadingIndicator.style.display = 'none';
   loadingIndicator.id = 'loading-indicator';
-  
+
   // Append the button to the cell
   newCell.appendChild(toggleButton);
   newCell.appendChild(loadingIndicator);
@@ -58,10 +58,10 @@ function addImagePreviewToggle() {
     // Turn previews on
     toggleButton.value = 'Hide Image Previews';
     toggleButton.setAttribute('data-state', 'on');
-    
+
     // Show loading indicator
     document.getElementById('loading-indicator').style.display = 'inline';
-    
+
     // Fetch RSS feed only if not already fetched
     if (!window.imageUsageData) {
       fetchRssFeedAndCountUsage(blogName, imageLinks, table).then(usageData => {
@@ -71,7 +71,7 @@ function addImagePreviewToggle() {
         updateUsageCounts(table, usageData);
         // Hide loading indicator
         document.getElementById('loading-indicator').style.display = 'none';
-        
+
         // Adjust table width and column widths
         adjustTableLayout();
         // Sort the table after adding the cells
@@ -83,7 +83,7 @@ function addImagePreviewToggle() {
       updateUsageCounts(table, window.imageUsageData);
       // Hide loading indicator
       document.getElementById('loading-indicator').style.display = 'none';
-      
+
       // Adjust table width and column widths
       adjustTableLayout();
       // Sort the table after adding the cells
@@ -93,7 +93,7 @@ function addImagePreviewToggle() {
     // Turn previews off
     toggleButton.value = 'Show Image Previews';
     toggleButton.setAttribute('data-state', 'off');
-    
+
     // Remove all preview cells and usage cells
     removePreviewCells(table);
     removeUsageCells(table);
@@ -107,20 +107,20 @@ function addImagePreviewToggle() {
 function adjustTableLayout() {
   const table = document.querySelector('table.lotusTable');
   table.style.width = '100%';
-  
+
   // Get the table headers
   const headers = table.querySelectorAll('th');
-  
+
   // Set the width of the filename column (second column)
   if (headers.length > 1) {
     headers[1].style.width = '60%';
   }
-  
+
   // Set the width of the preview column (fourth column)
   if (headers.length > 3) {
     headers[3].style.width = '15%';
   }
-  
+
   // Set the width of the usage count column (fifth column)
   if (headers.length > 4) {
     headers[4].style.width = '15%';
@@ -135,7 +135,7 @@ function sortTableByColumn() {
   const tbody = tableElement.querySelector('tbody');
   const columnIndex = 4;
   const asc = false;
-  
+
   // Define the comparer function
   var comparer = function(idx, asc) {
     return function(rowA, rowB) {
@@ -143,22 +143,22 @@ function sortTableByColumn() {
       function getCellValue(row, index) {
         return row.cells[index].innerText || row.cells[index].textContent;
       }
-      
+
       const v1 = getCellValue(asc ? rowA : rowB, idx);
       const v2 = getCellValue(asc ? rowB : rowA, idx);
-      
+
       // Sort based on numeric or string comparison
       return (v1 !== '' && v2 !== '' && !isNaN(v1) && !isNaN(v2))
         ? v1 - v2
         : v1.toString().localeCompare(v2);
     };
   };
-  
+
   // Sort and reappend the rows
   Array.from(tbody.querySelectorAll('tr'))
     .sort(comparer(columnIndex, asc))
     .forEach(tr => tbody.appendChild(tr));
-  
+
   console.log("finished sorting");
 }
 }
@@ -166,14 +166,14 @@ function sortTableByColumn() {
 // Function to extract blog name from URL using multiple methods
 function extractBlogNameFromUrl() {
   // Try several methods to extract the blog name
-  
+
   // Method 1: Check for "weblog" parameter in URL
   const urlParams = new URLSearchParams(window.location.search);
   const weblogParam = urlParams.get('weblog');
   if (weblogParam) {
     return weblogParam;
   }
-  
+
   // Method 2: Extract from path parameter
   const pathParam = urlParams.get('path');
   if (pathParam) {
@@ -184,7 +184,7 @@ function extractBlogNameFromUrl() {
       return pathParts[2]; // This should be the blog UUID
     }
   }
-  
+
   // Method 3: Look for blog ID in the current URL path
   const currentPath = window.location.pathname;
   const blogMatch = currentPath.match(/\/blogs\/([a-f0-9-]+)\//i);
@@ -208,13 +208,13 @@ async function fetchRssFeedAndCountUsage(blogName, imageLinks, table) {
 
     // Create a map to store image usage counts
     const usageCounts = {};
-    
+
     // Initialize variables for pagination
     const pageSize = 50; // Default page size in HCL Connections
     let currentPage = 0;
     let hasMorePages = true;
     let totalEntries = 0;
-    
+
     // Process all pages
     while (hasMorePages) {
       // Use relative URL with the blog UUID directly
@@ -236,13 +236,13 @@ async function fetchRssFeedAndCountUsage(blogName, imageLinks, table) {
       // Get all entries/posts on this page
       const entries = xmlDoc.querySelectorAll('entry');
       console.log("Found " + entries.length + " blog entries on page " + currentPage);
-      
+
       // No entries means we've reached the end
       if (entries.length === 0) {
         hasMorePages = false;
         break;
       }
-      
+
       totalEntries += entries.length;
 
       // Process each entry to find image references
@@ -261,7 +261,7 @@ async function fetchRssFeedAndCountUsage(blogName, imageLinks, table) {
         imageLinks.forEach(link => {
           // Extract the filename from the link
           const filename = link.textContent;
-          
+
           // Log for debugging
           if (currentPage === 0 && entries[0] === entry) {
             console.log("Checking for image:", filename);
@@ -269,20 +269,20 @@ async function fetchRssFeedAndCountUsage(blogName, imageLinks, table) {
 
           // Count occurrences in the content
           // Note: We need to check for the filename or the URL pattern
-          /* 
+          /*
 	   * const filenameRegex = new RegExp(filename.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'), 'g');
            * const matches1 = content.match(filenameRegex);
            * const count1 = matches1 ? matches1.length : 0;
 	   */
-          
+
           // Also check for URL patterns that might contain the image
 	  const urlPattern = new RegExp("(src)=[\"'][^\"']*" + encodeURIComponent(filename).replace(/[.*+?^${}()|[\]\\]/g, '\\$&') + "[\"']", 'g');
           // const urlPattern = new RegExp("(src)=[\"'][^\"']*" + filename.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') + "[\"']", 'g');
           const matches2 = content.match(urlPattern);
           const count2 = matches2 ? matches2.length : 0;
-          
+
           const totalCount = count2;
-          
+
           // Log for debugging
           if (totalCount > 0 && currentPage === 0) {
             console.log("Found image '" + filename + "' " + totalCount + " times in an entry");
@@ -292,7 +292,7 @@ async function fetchRssFeedAndCountUsage(blogName, imageLinks, table) {
           usageCounts[filename] = (usageCounts[filename] || 0) + totalCount;
         });
       });
-      
+
       // Check if we need to fetch more pages (if entries.length < pageSize, we've reached the end)
       if (entries.length < pageSize) {
         hasMorePages = false;
@@ -300,7 +300,7 @@ async function fetchRssFeedAndCountUsage(blogName, imageLinks, table) {
         currentPage++;
       }
     }
-    
+
     console.log("Processed a total of " + totalEntries + " blog entries across " + currentPage + " pages");
     return usageCounts;
 
@@ -324,11 +324,11 @@ function updateUsageCounts(table, usageCounts) {
 
   // Log usage counts for debugging
   console.log("Usage counts data:", usageCounts);
-  
+
   // Get all table rows
   const allRows = Array.from(table.querySelectorAll('tr'));
   console.log("Found " + allRows.length + " total rows in table");
-  
+
   // Skip just the header row
   const contentRows = allRows.slice(1);
   console.log("Processing " + contentRows.length + " content rows");
@@ -336,7 +336,7 @@ function updateUsageCounts(table, usageCounts) {
   // Process each row
   contentRows.forEach((row, index) => {
     console.log("Processing row " + (index+1));
-    
+
     // Find image link in this row
     const fileLink = row.querySelector('a.bidiSTT_URL');
     if (!fileLink) {
@@ -519,7 +519,7 @@ function shouldLoadScript() {
 if (shouldLoadScript()) {
   document.addEventListener('DOMContentLoaded', () => {
     addImagePreviewToggle();
-    
+
     // Add CSS for loading indicator
     const style = document.createElement('style');
     style.textContent = "      .usage-count-zero {        color: red;        font-weight: bold;      }      .usage-count-nonzero {        color: green;        font-weight: bold;      }      .image-thumbnail {        max-width: 100px;        max-height: 100px;        cursor: pointer;      }      .image-preview-modal {        position: fixed;        top: 0;        left: 0;        width: 100%;        height: 100%;        background-color: rgba(0, 0, 0, 0.8);        display: flex;        flex-direction: column;        align-items: center;        justify-content: center;        z-index: 1000;      }      .preview-image {        max-width: 90%;        max-height: 80%;        border: 2px solid white;      }      .preview-caption {        color: white;        margin-top: 10px;        font-size: 16px;      }      .preview-close-btn {        position: absolute;        top: 15px;        right: 15px;        color: white;        background: transparent;        border: none;        font-size: 28px;        cursor: pointer;      }      #loading-indicator {        margin-left: 10px;        font-style: italic;      }";
