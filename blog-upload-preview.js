@@ -2,8 +2,9 @@
  * Author: Christoph Stoettner
  * Mail: christoph.stoettner@stoeps.de
  * Date: 2025-03-12
- * Copyright: © Christoph Stoettner https://stoeps.de
- * License: Apache 2.0 https://www.apache.org/licenses/LICENSE-2.0.html
+ * Modified: 2025-04-22 - Added support for pagination
+ * Copyright:
+ * License:
  */
 // Function to add a single preview toggle button and prepare images for preview
 function addImagePreviewToggle() {
@@ -25,8 +26,15 @@ function addImagePreviewToggle() {
   toggleButton.className = 'lotusBtn';
   toggleButton.setAttribute('data-state', 'off');
 
+  // Create loading indicator (hidden by default)
+  const loadingIndicator = document.createElement('span');
+  loadingIndicator.textContent = ' Loading...';
+  loadingIndicator.style.display = 'none';
+  loadingIndicator.id = 'loading-indicator';
+  
   // Append the button to the cell
   newCell.appendChild(toggleButton);
+  newCell.appendChild(loadingIndicator);
 
   // Append the new cell to the row
   tableRow.appendChild(newCell);
@@ -45,46 +53,143 @@ function addImagePreviewToggle() {
 
   // Add click handler to toggle button
   toggleButton.addEventListener('click', () => {
-    const currentState = toggleButton.getAttribute('data-state');
-    if (currentState === 'off') {
-      // Turn previews on
-      toggleButton.value = 'Hide Image Previews';
-      toggleButton.setAttribute('data-state', 'on');
-
-      // Fetch RSS feed only if not already fetched
-      if (!window.imageUsageData) {
-        fetchRssFeedAndCountUsage(blogName, imageLinks, table).then(usageData => {
-          window.imageUsageData = usageData;
-          // Add preview cells and usage counts to the table
-          addPreviewCells(table, imageLinks);
-          updateUsageCounts(table, usageData);
-        });
-      } else {
+  const currentState = toggleButton.getAttribute('data-state');
+  if (currentState === 'off') {
+    // Turn previews on
+    toggleButton.value = 'Hide Image Previews';
+    toggleButton.setAttribute('data-state', 'on');
+    
+    // Show loading indicator
+    document.getElementById('loading-indicator').style.display = 'inline';
+    
+    // Fetch RSS feed only if not already fetched
+    if (!window.imageUsageData) {
+      fetchRssFeedAndCountUsage(blogName, imageLinks, table).then(usageData => {
+        window.imageUsageData = usageData;
         // Add preview cells and usage counts to the table
         addPreviewCells(table, imageLinks);
-        updateUsageCounts(table, window.imageUsageData);
-      }
+        updateUsageCounts(table, usageData);
+        // Hide loading indicator
+        document.getElementById('loading-indicator').style.display = 'none';
+        
+        // Adjust table width and column widths
+        adjustTableLayout();
+        // Sort the table after adding the cells
+        sortTableByColumn();
+      });
     } else {
-      // Turn previews off
-      toggleButton.value = 'Show Image Previews';
-      toggleButton.setAttribute('data-state', 'off');
-
-      // Remove all preview cells and usage cells
-      removePreviewCells(table);
-      removeUsageCells(table);
+      // Add preview cells and usage counts to the table
+      addPreviewCells(table, imageLinks);
+      updateUsageCounts(table, window.imageUsageData);
+      // Hide loading indicator
+      document.getElementById('loading-indicator').style.display = 'none';
+      
+      // Adjust table width and column widths
+      adjustTableLayout();
+      // Sort the table after adding the cells
+      sortTableByColumn();
     }
-  });
+  } else {
+    // Turn previews off
+    toggleButton.value = 'Show Image Previews';
+    toggleButton.setAttribute('data-state', 'off');
+    
+    // Remove all preview cells and usage cells
+    removePreviewCells(table);
+    removeUsageCells(table);
+
+    // Restore original table width
+    table.style.width = '50%';
+  }
+});
+
+// Function to adjust table layout
+function adjustTableLayout() {
+  const table = document.querySelector('table.lotusTable');
+  table.style.width = '100%';
+  
+  // Get the table headers
+  const headers = table.querySelectorAll('th');
+  
+  // Set the width of the filename column (second column)
+  if (headers.length > 1) {
+    headers[1].style.width = '60%';
+  }
+  
+  // Set the width of the preview column (fourth column)
+  if (headers.length > 3) {
+    headers[3].style.width = '15%';
+  }
+  
+  // Set the width of the usage count column (fifth column)
+  if (headers.length > 4) {
+    headers[4].style.width = '15%';
+  }
+}
+
+// Define the sorting function outside of the click handler
+function sortTableByColumn() {
+  console.log("start sorting ...");
+  // Make sure we're using the correct table
+  const tableElement = document.querySelector('table.lotusTable');
+  const tbody = tableElement.querySelector('tbody');
+  const columnIndex = 4;
+  const asc = false;
+  
+  // Define the comparer function
+  var comparer = function(idx, asc) {
+    return function(rowA, rowB) {
+      // Function to get cell value from a row at a specific index
+      function getCellValue(row, index) {
+        return row.cells[index].innerText || row.cells[index].textContent;
+      }
+      
+      const v1 = getCellValue(asc ? rowA : rowB, idx);
+      const v2 = getCellValue(asc ? rowB : rowA, idx);
+      
+      // Sort based on numeric or string comparison
+      return (v1 !== '' && v2 !== '' && !isNaN(v1) && !isNaN(v2))
+        ? v1 - v2
+        : v1.toString().localeCompare(v2);
+    };
+  };
+  
+  // Sort and reappend the rows
+  Array.from(tbody.querySelectorAll('tr'))
+    .sort(comparer(columnIndex, asc))
+    .forEach(tr => tbody.appendChild(tr));
+  
+  console.log("finished sorting");
+}
 }
 
 // Function to extract blog name from URL using multiple methods
 function extractBlogNameFromUrl() {
   // Try several methods to extract the blog name
-
-  // Method 2: Check for "weblog" parameter in URL
+  
+  // Method 1: Check for "weblog" parameter in URL
   const urlParams = new URLSearchParams(window.location.search);
   const weblogParam = urlParams.get('weblog');
   if (weblogParam) {
     return weblogParam;
+  }
+  
+  // Method 2: Extract from path parameter
+  const pathParam = urlParams.get('path');
+  if (pathParam) {
+    // The path will often have a format like /blogs/[blogUUID]/media/...
+    // Try to extract the UUID from the path
+    const pathParts = pathParam.split('/');
+    if (pathParts.length >= 3 && pathParts[1] === 'blogs') {
+      return pathParts[2]; // This should be the blog UUID
+    }
+  }
+  
+  // Method 3: Look for blog ID in the current URL path
+  const currentPath = window.location.pathname;
+  const blogMatch = currentPath.match(/\/blogs\/([a-f0-9-]+)\//i);
+  if (blogMatch && blogMatch[1]) {
+    return blogMatch[1];
   }
 
   // If no blog name can be found, return null
@@ -92,7 +197,7 @@ function extractBlogNameFromUrl() {
   return null;
 }
 
-// Function to fetch RSS feed and count image usage
+// Function to fetch RSS feed with pagination and count image usage
 async function fetchRssFeedAndCountUsage(blogName, imageLinks, table) {
   try {
     // If no blog name was found, return empty usage data
@@ -101,55 +206,107 @@ async function fetchRssFeedAndCountUsage(blogName, imageLinks, table) {
       return {};
     }
 
-    // Fetch the RSS feed
-    const feedUrl = `https://cnx8.stoeps.home/blogs/roller-ui/rendering/feed/${blogName}/entries/atom?lang=en_us`;
-    console.log("Fetching RSS feed from:", feedUrl);
-
-    const response = await fetch(feedUrl);
-
-    if (!response.ok) {
-      throw new Error(`Failed to fetch RSS feed: ${response.status}`);
-    }
-
-    const feedText = await response.text();
-
-    // Parse the XML content
-    const parser = new DOMParser();
-    const xmlDoc = parser.parseFromString(feedText, "text/xml");
-
-    // Get all entries/posts
-    const entries = xmlDoc.querySelectorAll('entry');
-    console.log(`Found ${entries.length} blog entries in the feed`);
-
     // Create a map to store image usage counts
     const usageCounts = {};
+    
+    // Initialize variables for pagination
+    const pageSize = 50; // Default page size in HCL Connections
+    let currentPage = 0;
+    let hasMorePages = true;
+    let totalEntries = 0;
+    
+    // Process all pages
+    while (hasMorePages) {
+      // Use relative URL with the blog UUID directly
+      const feedUrl = "/blogs/roller-ui/rendering/feed/" + blogName + "/entries/atom?lang=en_us&page=" + currentPage + "&ps=" + pageSize;
+      console.log("Fetching RSS feed page " + currentPage + " from:", feedUrl);
 
-    // Process each entry to find image references
-    entries.forEach(entry => {
-      const contentElement = entry.querySelector('content');
-      if (!contentElement) return;
+      const response = await fetch(feedUrl);
 
-      const content = contentElement.textContent;
+      if (!response.ok) {
+        throw new Error("Failed to fetch RSS feed: " + response.status);
+      }
 
-      // Check each image link against the content
-      imageLinks.forEach(link => {
-        // Extract the filename from the link
-        const filename = link.textContent;
+      const feedText = await response.text();
 
-        // Count occurrences in the content
-        const regex = new RegExp(filename.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'), 'g');
-        const matches = content.match(regex);
-        const count = matches ? matches.length : 0;
+      // Parse the XML content
+      const parser = new DOMParser();
+      const xmlDoc = parser.parseFromString(feedText, "text/xml");
 
-        // Update the usage count
-        usageCounts[filename] = (usageCounts[filename] || 0) + count;
+      // Get all entries/posts on this page
+      const entries = xmlDoc.querySelectorAll('entry');
+      console.log("Found " + entries.length + " blog entries on page " + currentPage);
+      
+      // No entries means we've reached the end
+      if (entries.length === 0) {
+        hasMorePages = false;
+        break;
+      }
+      
+      totalEntries += entries.length;
+
+      // Process each entry to find image references
+      entries.forEach(entry => {
+        const contentElement = entry.querySelector('content');
+        if (!contentElement) return;
+
+        const content = contentElement.textContent || '';
+
+        // Debug first entry content to verify what we're searching
+        if (currentPage === 0 && entries[0] === entry) {
+          console.log("First entry content sample:", content.substring(0, 500));
+        }
+
+        // Check each image link against the content
+        imageLinks.forEach(link => {
+          // Extract the filename from the link
+          const filename = link.textContent;
+          
+          // Log for debugging
+          if (currentPage === 0 && entries[0] === entry) {
+            console.log("Checking for image:", filename);
+          }
+
+          // Count occurrences in the content
+          // Note: We need to check for the filename or the URL pattern
+          /* 
+	   * const filenameRegex = new RegExp(filename.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'), 'g');
+           * const matches1 = content.match(filenameRegex);
+           * const count1 = matches1 ? matches1.length : 0;
+	   */
+          
+          // Also check for URL patterns that might contain the image
+	  const urlPattern = new RegExp("(src)=[\"'][^\"']*" + encodeURIComponent(filename).replace(/[.*+?^${}()|[\]\\]/g, '\\$&') + "[\"']", 'g');
+          // const urlPattern = new RegExp("(src)=[\"'][^\"']*" + filename.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') + "[\"']", 'g');
+          const matches2 = content.match(urlPattern);
+          const count2 = matches2 ? matches2.length : 0;
+          
+          const totalCount = count2;
+          
+          // Log for debugging
+          if (totalCount > 0 && currentPage === 0) {
+            console.log("Found image '" + filename + "' " + totalCount + " times in an entry");
+          }
+
+          // Update the usage count
+          usageCounts[filename] = (usageCounts[filename] || 0) + totalCount;
+        });
       });
-    });
-
+      
+      // Check if we need to fetch more pages (if entries.length < pageSize, we've reached the end)
+      if (entries.length < pageSize) {
+        hasMorePages = false;
+      } else {
+        currentPage++;
+      }
+    }
+    
+    console.log("Processed a total of " + totalEntries + " blog entries across " + currentPage + " pages");
     return usageCounts;
 
   } catch (error) {
     console.error('Error fetching RSS feed:', error);
+    document.getElementById('loading-indicator').style.display = 'none';
     return {};
   }
 }
@@ -158,18 +315,28 @@ async function fetchRssFeedAndCountUsage(blogName, imageLinks, table) {
 function updateUsageCounts(table, usageCounts) {
   // Add header for usage column if it doesn't exist
   const headerRow = table.querySelector('tr.lotusFirst.lotusSort');
-  if (!headerRow.querySelector('.usage-header')) {
+  if (headerRow && !headerRow.querySelector('.usage-header')) {
     const usageHeader = document.createElement('th');
     usageHeader.textContent = 'Usage Count';
     usageHeader.className = 'lotusAlignCenter usage-header';
     headerRow.appendChild(usageHeader);
   }
 
-  // Get all content rows (skip header and parent directory rows)
-  const contentRows = Array.from(table.querySelectorAll('tr')).slice(2);
+  // Log usage counts for debugging
+  console.log("Usage counts data:", usageCounts);
+  
+  // Get all table rows
+  const allRows = Array.from(table.querySelectorAll('tr'));
+  console.log("Found " + allRows.length + " total rows in table");
+  
+  // Skip just the header row
+  const contentRows = allRows.slice(1);
+  console.log("Processing " + contentRows.length + " content rows");
 
   // Process each row
-  contentRows.forEach(row => {
+  contentRows.forEach((row, index) => {
+    console.log("Processing row " + (index+1));
+    
     // Find image link in this row
     const fileLink = row.querySelector('a.bidiSTT_URL');
     if (!fileLink) {
@@ -222,18 +389,19 @@ function removeUsageCells(table) {
 function addPreviewCells(table, imageLinks) {
   // Add header for preview column if it doesn't exist
   const headerRow = table.querySelector('tr.lotusFirst.lotusSort');
-  if (!headerRow.querySelector('.preview-header')) {
+  if (headerRow && !headerRow.querySelector('.preview-header')) {
     const previewHeader = document.createElement('th');
     previewHeader.textContent = 'Preview';
     previewHeader.className = 'lotusAlignCenter preview-header';
     headerRow.appendChild(previewHeader);
   }
 
-  // Get all content rows (skip header and parent directory rows)
-  const contentRows = Array.from(table.querySelectorAll('tr')).slice(2);
+  // Get all rows (skip just the header row)
+  const contentRows = Array.from(table.querySelectorAll('tr')).slice(1);
+  console.log("Adding preview cells to " + contentRows.length + " rows");
 
   // Process each row
-  contentRows.forEach(row => {
+  contentRows.forEach((row, index) => {
     // Skip if preview cell already exists
     if (row.querySelector('.preview-cell')) return;
 
@@ -260,7 +428,7 @@ function addPreviewCells(table, imageLinks) {
       // Create the thumbnail image
       const thumbnail = document.createElement('img');
       thumbnail.src = fileLink.href;
-      thumbnail.alt = `Preview of ${fileLink.textContent}`;
+      thumbnail.alt = "Preview of " + fileLink.textContent;
       thumbnail.className = 'image-thumbnail';
       thumbnail.loading = 'lazy'; // Lazy load images
 
@@ -343,146 +511,18 @@ function showLargerPreview(imageUrl, fileName) {
 function shouldLoadScript() {
     const url = new URL(window.location.href);
     const pathname = url.pathname;
-    const pathParam = url.searchParams.get('path');
 
-    return pathname.includes('/blogs/roller-ui/authoring/uploadFiles.do') &&
-           pathParam && pathParam.length > 0;
+    return pathname.includes('/blogs/roller-ui/authoring/uploadFiles.do');
 }
 
-// Add CSS for the previews
-function addPreviewStyles() {
-  const styleElement = document.createElement('style');
-  styleElement.textContent = `
-    .preview-toggle-container {
-      margin-bottom: 10px;
-      text-align: right;
-    }
-
-    .preview-toggle-button {
-      padding: 6px 12px;
-      background-color: #4178BE;
-      color: white;
-      border: none;
-      border-radius: 3px;
-      cursor: pointer;
-      font-size: 13px;
-      transition: background-color 0.2s ease;
-    }
-
-    .preview-toggle-button:hover {
-      background-color: #365FA7;
-    }
-
-    .preview-cell {
-      vertical-align: middle;
-      padding: 8px;
-    }
-
-    .thumbnail-container {
-      width: 80px;
-      height: 60px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin: 0 auto;
-      cursor: pointer;
-    }
-
-    .image-thumbnail {
-      max-width: 80px;
-      max-height: 60px;
-      border: 1px solid #ddd;
-      border-radius: 3px;
-      transition: transform 0.2s ease;
-    }
-
-    .image-thumbnail:hover {
-      transform: scale(1.1);
-      box-shadow: 0 0 5px rgba(0,0,0,0.2);
-    }
-
-    .image-preview-modal {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background-color: rgba(0,0,0,0.8);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      z-index: 1000;
-    }
-
-    .preview-image {
-      max-width: 90%;
-      max-height: 80%;
-      border: 2px solid white;
-    }
-
-    .preview-close-btn {
-      position: absolute;
-      top: 15px;
-      right: 25px;
-      font-size: 30px;
-      color: white;
-      background: none;
-      border: none;
-      cursor: pointer;
-    }
-
-    .preview-caption {
-      color: white;
-      font-size: 16px;
-      margin-top: 10px;
-      max-width: 80%;
-      text-align: center;
-      word-break: break-all;
-    }
-
-    .app-blogs.cnx8-ui #filesListForm input#preview{
-      background: var(--color-button) !important;
-      color: var(--color-button-text) !important;
-      margin-left: 0px;
-      text-shadow: none;
-    }
-
-    .app-blogs.cnx8-ui #filesListForm input#preview:hover {
-      background-color: var(--color-button-hover) !important;
-      color: var(--color-button-text) !important;
-      text-shadow: none;
-      box-shadow: none !important;
-    }
-
-    .lotusAlignRight {
-      text-align: right !important;
-      padding-left: 10px !important;
-      }
-
-    .lotusAlignCenter {
-      text-align: center !important;
-      padding-left: 10px !important;
-      }
-
-    .lotusui30 :has(#lotusContent) table.lotusTable tbody tr.lotusAltRow td.lotusAlignRight.usage-cell span.usage-count-zero {
-      color: red !important;
-      font-weight: bold;
-    }
-
-    .lotusui30 :has(#lotusContent) table.lotusTable tbody tr.lotusAltRow td.lotusAlignRight.usage-cell span.usage-count-nonzero {
-      color: green !important;
-    }
-  `;
-
-  document.head.appendChild(styleElement);
-}
-
-// Initialize the preview toggle when
 // Initialize the preview toggle when the DOM is fully loaded
 if (shouldLoadScript()) {
   document.addEventListener('DOMContentLoaded', () => {
-    addPreviewStyles();
     addImagePreviewToggle();
+    
+    // Add CSS for loading indicator
+    const style = document.createElement('style');
+    style.textContent = "      .usage-count-zero {        color: red;        font-weight: bold;      }      .usage-count-nonzero {        color: green;        font-weight: bold;      }      .image-thumbnail {        max-width: 100px;        max-height: 100px;        cursor: pointer;      }      .image-preview-modal {        position: fixed;        top: 0;        left: 0;        width: 100%;        height: 100%;        background-color: rgba(0, 0, 0, 0.8);        display: flex;        flex-direction: column;        align-items: center;        justify-content: center;        z-index: 1000;      }      .preview-image {        max-width: 90%;        max-height: 80%;        border: 2px solid white;      }      .preview-caption {        color: white;        margin-top: 10px;        font-size: 16px;      }      .preview-close-btn {        position: absolute;        top: 15px;        right: 15px;        color: white;        background: transparent;        border: none;        font-size: 28px;        cursor: pointer;      }      #loading-indicator {        margin-left: 10px;        font-style: italic;      }";
+    document.head.appendChild(style);
   });
 }

@@ -1,0 +1,30 @@
+{
+    "name": "Blog File Uploads",
+    "title": "Add preview and counter to Blog File Uploads",
+    "description": "Adding a bit more value for users to Blogs File Uploads",
+    "services": [
+        "Connections",
+        "Customizer"
+    ],
+    "state": "enabled",
+    "extensions": [
+        {
+            "name": "Blogs",
+            "type": "com.ibm.customizer.ui",
+            "payload": {
+                "include-files": [
+                    "stoeps-customizer-css/blog-upload-preview.js",
+                    "stoeps-customizer-css/blog-upload.css"
+                ],
+                "match": {
+                    "url": "roller-ui/authoring/uploadFiles.do"
+                },
+                "cache-headers": {
+                    "cache-control": "max-age=0"
+                }
+            },
+            "path": "blogs",
+            "state": "enabled"
+        }
+    ]
+}
