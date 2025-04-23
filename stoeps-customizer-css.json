@@ -14,7 +14,6 @@
             "payload": {
                 "include-files": [
                     "stoeps-customizer-css/blogs.css",
-                    "stoeps-customizer-css/blog-upload-preview.js"
                 ],
                 "cache-headers": {
                     "cache-control": "max-age=0"
