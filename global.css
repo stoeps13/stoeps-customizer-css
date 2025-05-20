@@ -1,9 +1,11 @@
 .lotusui30 a, .lotusui30 a:visited {
   color: var(--color-tab-text-selected) !important;
 }
+/* removed in CR10
 .lotusui30 .lotusBtn {
   color: var(--color-tab-text-selected) !important;
 }
+*/
 /* fix create community links */
 li.bx--dropdown-item a.bx--dropdown-link {
   color: var(--color-button-text) !important;
