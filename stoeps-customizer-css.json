@@ -13,7 +13,7 @@
             "type": "com.ibm.customizer.ui",
             "payload": {
                 "include-files": [
-                    "stoeps-customizer-css/blogs.css",
+                    "stoeps-customizer-css/blogs.css"
                 ],
                 "cache-headers": {
                     "cache-control": "max-age=0"
