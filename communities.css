@@ -76,4 +76,10 @@ body .icCatalogCommunityCreate.bx--dropdown:hover {
         display: none;
 }
 
-/* Hide template section in highlights page settings */ .clearfix.page-template { display: none; }
+/* Hide template section in highlights page settings */ 
+.clearfix.page-template { display: none; }
+
+/* Fix jumping links in tertiary navigation in CR10 */
+.bx--tabs .bx--tabs__nav .bx--tabs__nav-item .bx--tabs__nav-link {
+    border: 2px solid transparent !important;
+}
