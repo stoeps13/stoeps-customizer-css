@@ -6,8 +6,15 @@
   fill: var(--color-button) !important;
 }
 
-.ic-view-select .bx--list-box__label, .ic-view-select .bx--list-box__field {
+.ic-view-select span.bx--list-box__label, .ic-view-select .bx--list-box__label, .ic-view-select .bx--list-box__field {
   color: var(--color-button) !important;
+}
+.ic-view-select div.bx--list-box__menu-icon {
+  color: var(--color-button) !important;
+}
+
+.ic-view-select .bx--list-box__menu-item--highlighted {
+  background-color: var(--color-button) !important;
 }
 
 .bx--cardv2.community-card .shared-icon svg {
@@ -76,7 +83,7 @@ body .icCatalogCommunityCreate.bx--dropdown:hover {
         display: none;
 }
 
-/* Hide template section in highlights page settings */ 
+/* Hide template section in highlights page settings */
 .clearfix.page-template { display: none; }
 
 /* Fix jumping links in tertiary navigation in CR10 */
