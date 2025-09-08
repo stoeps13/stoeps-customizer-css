@@ -55,3 +55,7 @@ div#top-navigation-banner div#cnx-admin-banner-wrapper div.adminBanner.adminBann
   padding: 0 !important;
 }
 
+/* Footer Text color */
+.lotusui30 .lotusFooter ul li a {
+  color: var(--color-footer-text) !important;
+}
